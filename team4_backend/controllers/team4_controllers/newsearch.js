@@ -1,5 +1,5 @@
-const Books = require('../models/search')
-const asyncHandler = require('../middleware/asyncHandler.js');
+const Books = require('../../models/team4_models/search')
+const asyncHandler = require('../../middleware/team4_middleware/asyncHandler.js');
 
 const insertdata = async(req,res,next) => {
     try{

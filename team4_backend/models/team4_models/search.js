@@ -1,5 +1,6 @@
+//This model is for temperory usage by team4 
+
 const mongoose = require('mongoose');
-// 2. Create a schema
 const Schema = mongoose.Schema;
 const BooksSchema = new Schema({
     title: {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Navbar,Card,Container} from 'react-bootstrap' 
+import {Card,Button} from 'react-bootstrap' 
 import nonfic2  from "../../images/nonfic2.JPG"
 import SearchPage from '../SideSearchBar/searchbar';
 import { FaCartPlus } from "react-icons/fa";
@@ -12,58 +12,27 @@ import AllbooksbottomCardImage from '../../images/AllbooksbottomCardImage.png'
 import * as actions from '../../action/action'
 // import React, { useEffect } from 'react'
 import {connect} from 'react-redux';
-
-export default class AllBooksPage extends Component {
+class AllBooksPage extends Component {
     constructor(props){
         super(props);
-        this.state = {changewidth: {},allbooks :[] , prev:false, next:true, showprev:true, shownext:true, current:1,paginate:[]}
+        this.state = {current:1}
     }
 
-//    componentDidMount(){
-//       this.props.onFetchAllbooks();
-//    }
    componentDidMount(){
-            fetch('http://localhost:4000'+'/books',{
-                headers:{'content-type': 'application/json'},
-            })
-            .then(res=>res.json())
-            .then(data=>{
-                this.setState({allbooks : data.data, paginate : data.pagination})
-            });
-       }
+      this.props.onFetchAllbooks(this.state.current);
+   }
 
-    changenext(){
-        var cur = this.state.current;
-        if(!this.state.paginate.next){
-            console.log("no next page")
-        }else{
-            this.setState({current: this.state.current+1})
-            cur=cur+1
-            fetch(`http://localhost:4000/books?page=${cur}&limit=12`,{
-                headers:{'content-type': 'application/json'},
-            })
-            .then(res=>res.json())
-            .then(data=>{
-                this.setState({allbooks : data.data, paginate : data.pagination})
-            });
-        }
+   changenext(){
+    var cur = this.state.current;
+    this.setState({current: this.state.current+1})
+    cur=cur+1
+    this.props.onFetchAllbooks(cur)
     }
-
     changeprev(){
         var cur = this.state.current;
-        if(!this.state.paginate.prev){
-            console.log("no prev page")
-        }else{
-            this.setState({current: this.state.current-1})
-            cur = cur-1
-            fetch(`http://localhost:4000/books?page=${cur}&limit=12`,{
-                headers:{'content-type': 'application/json'},
-            })
-            .then(res=>res.json())
-            .then(data=>{
-                this.setState({allbooks : data.data, paginate : data.pagination})
-            });
-        }
+        this.setState({current: this.state.current-1})
+        cur=cur-1
+        this.props.onFetchAllbooks(cur)
     }
 
     decidenow(){
@@ -71,13 +40,36 @@ export default class AllBooksPage extends Component {
         alert("Please Login!")
         this.props.history.push('/login')
     }
-
     render() {
-        console.log("alldeals",this.state.allbooks)
-        console.log("pagination",this.state.paginate)
-    
-        var allbookslist = this.state.allbooks.map((books, i)=>{
-            return(
+        var showprevbutton = true
+        var shownextbutton = true
+        console.log("this.props.Books",this.props.Books)
+
+        if(this.state.current !== 1){
+            showprevbutton = false
+        }
+
+        if(this.props.Books.length === 0 || this.props.Books.length !== 12){
+            shownextbutton = true
+
+            if(this.props.Books.length === 0){
+                var allbookslist = (
+                    <div className="alert alert-dismissible alert-info m-3">
+                        <strong>No Data Available !</strong>
+                        <p>Click <b>Prev</b> to move to before page</p>
+                        <Button class="page-link" onClick={this.changeprev.bind(this)} disabled={showprevbutton}>Prev</Button>
+                    </div>)
+            }
+        }
+
+        if(this.props.Books.length === 12 || this.props.Books.length > 0){
+
+            if(this.props.Books.length === 12){
+                shownextbutton = false
+            }
+
+            var allbookslist = this.props.Books.map((books, i)=>{
+                return(
                 <div className="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-3 cardmarign" key={i}>
                     
                     <Card className="card-top border-0 mb-4 card shadow rounded Cardshover">
@@ -124,6 +116,7 @@ export default class AllBooksPage extends Component {
                 </div>
             )
         })
+    }
         
         return (
             <>
@@ -163,6 +156,20 @@ export default class AllBooksPage extends Component {
                                 </div>
                             </div>
                        </div>
+                       <div className="row">
+                            <ul className="justify-content-center align-items-center pagination pagination-lg">
+                                <li class="page-item list-unstyled">
+                                    <Button class="page-link mr-1" onClick={this.changeprev.bind(this)} disabled={showprevbutton}>Prev</Button>
+                                </li>
+                                <li class="page-item list-unstyled">
+                                    <Button class="page-link mr-1" >{this.state.current}</Button>
+                                </li>
+                                <li class="page-item list-unstyled">
+                                    <Button class="page-link mr-1" onClick={this.changenext.bind(this)} disabled={shownextbutton}>Next</Button>
+                                </li>
+                            </ul>
+
+                         </div>
                     </div>
                 </div>
                     
@@ -180,20 +187,6 @@ export default class AllBooksPage extends Component {
                     </Card>
                 </div>
 
-                <div className="float-right m-3">
-                    <ul class="pagination pagination-lg">
-                        <li class="page-item">
-                            <a class="page-link" onClick={this.changeprev.bind(this)} disabled={this.state.showprev}>Prev</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" >{this.state.current}</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" onClick={this.changenext.bind(this)} disabled={this.state.shownext}>Next</a>
-                        </li>
-                    </ul>
-
-                </div>
                 
            </div>
             
@@ -201,6 +194,21 @@ export default class AllBooksPage extends Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    console.log('Inside Component ', state);
+    return {
+        Books: state.BookReducer.books
+    }
+  }
+  
+  const mapDispatchToProps = (dispatch) => {
+    return {
+        onFetchAllbooks: (curr_page)=>dispatch(actions.fetchbooksbyquery(curr_page)),
+    }
+  }
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(AllBooksPage);
 
 
 // const mapStateToProps = (state) => {

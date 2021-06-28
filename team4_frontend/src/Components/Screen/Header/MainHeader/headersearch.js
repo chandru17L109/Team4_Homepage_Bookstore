@@ -65,24 +65,21 @@ class Headersearch extends Component {
     // }
 
     render() {
-       var len = 1
-       console.log("this.state.headersearch",this.props.Books)
-       if(!len){
-        var newsearchresultslist =(
-            <div className="alert alert-dismissible alert-danger m-3">
-                {/* <button type="button" class="btn-close" data-bs-dismiss="alert"></button> */}
-                <strong>No search results found!</strong>
-            </div>
-        )
+        console.log("this.props.Books headersearch",this.props.Books)
+       if(this.props.Books.message){
+        var newsearchresultslist = (
+            <div className="alert alert-dismissible alert-info">
+                <strong className="m-5">No Search Results Found !</strong>
+           </div>)
        }else{
         var newsearchresultslist = this.props.Books.map((books, i)=>{
             return(
-                <div className="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-3 cardmarign" key={i} >
+                <div className="ml-5 col-4 col-sm-4 col-md-3 col-lg-3 col-xl-3 cardmarign" key={i} >
                     
-                    <Card className="card-top border-0 mb-4 card shadow rounded Cardshover">
+                    <Card className="card-top border-0 mb-5 card shadow rounded Cardshover">
                         
                         <Link to= {{pathname : '/description', query : books}}>
-                            <Card.Img className="card-header bg-white " src={nonfic2} variant="top" />
+                            <Card.Img className="card-header headersearchimg bg-white " src={nonfic2} variant="top" />
                         </Link>
                         
                         <Card.Body className="card-body change-font text-dark" >
@@ -130,16 +127,16 @@ class Headersearch extends Component {
             <div className="Main">
             {/* <div className="row"> */}
             <div className = "row">
-                    <div className="col-4 col-sm-3 col-md-2 col-lg-2 col-xl-2 ">
+                    {/* <div className="col-4 col-sm-3 col-md-2 col-lg-2 col-xl-2 ">
                         <div className="search-option-catagory card shadow rounded">
                             <SearchPage/>
                         </div>
-                    </div>
+                    </div> */}
 
-                    <div className="col-8 col-sm-9 col-md-9 col-xl-9 col-ls-9">
+                    <div className="col-12 col-sm-12 col-md-12 col-xl-12 col-ls-12">
                         <div className="search-sidecontent">
                             <div className="row">
-                            <h2  className="headingpage">Search Results</h2>
+                            <h2  className="headingpage ml-5">Search Results</h2>
                                 <div className="row">
                                 {newsearchresultslist} 
                                 </div>
@@ -179,8 +176,6 @@ const mapStateToProps = (state) => {
   }
   
   export default connect(mapStateToProps, mapDispatchToProps)(Headersearch);
-
-
 
 
 // fetch('http://localhost:4000/books/CommonSearch/'+params.searchelement,{

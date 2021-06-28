@@ -15,7 +15,7 @@ class TodayDealsPage extends Component {
 
     constructor(props){
         super(props);
-        this.state = {todaydealslist : [], discountquery : "/?sort=-discount"}
+        this.state = {todaydealslist : [], discountquery : "sort=-discount&limit=6"}
     }
 
 
@@ -30,8 +30,7 @@ class TodayDealsPage extends Component {
     }
 
     render() {
-        var DealsBooklist = this.props.Books.map((books, i)=>{
-            if(i < 6){
+        var DealsBooklist = this.props.todaydealsBooks.map((books, i)=>{
             return(
                 <div className="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2 cardmarign" key={i}>
                     
@@ -79,7 +78,6 @@ class TodayDealsPage extends Component {
             </div>
                 
             )
-            }
         })
         
         return (
@@ -92,13 +90,13 @@ class TodayDealsPage extends Component {
 const mapStateToProps = (state) => {
     console.log('Inside Component ', state);
     return {
-        Books: state.BookReducer.books
+        todaydealsBooks: state.BookReducer.homepagetodaydeals
     }
   }
   
   const mapDispatchToProps = (dispatch) => {
     return {
-        onFetchTodaydealsBooks: (condition_popular)=>dispatch(actions.fetchbooksbyquery(condition_popular)),
+        onFetchTodaydealsBooks: (condition_popular)=>dispatch(actions.fetchbooksHomepagetodaydeals(condition_popular)),
     }
   }
   

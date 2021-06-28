@@ -16,7 +16,7 @@ class NewRelease extends Component {
 
     constructor(props){
         super(props);
-        this.state = {newrelease : [], newreleasequery:"?sort=-date"}
+        this.state = {newrelease : [], newreleasequery:"sort=-date&limit=6"}
     }
 
 
@@ -31,8 +31,7 @@ class NewRelease extends Component {
     }
 
     render() {
-        var newreleaselist = this.props.Books.map((books, i)=>{
-            if(i < 6){
+        var newreleaselist = this.props.newreleaseBooks.map((books, i)=>{
             return(
 
                 <div className="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2 cardmarign" key={i}>
@@ -80,7 +79,6 @@ class NewRelease extends Component {
                     </Card>
                 </div>
             )
-            }
         })
         
         return (
@@ -93,13 +91,13 @@ class NewRelease extends Component {
 const mapStateToProps = (state) => {
     console.log('Inside Component ', state);
     return {
-        Books: state.BookReducer.books
+        newreleaseBooks: state.BookReducer.homepagenewrelease
     }
   }
   
   const mapDispatchToProps = (dispatch) => {
     return {
-        onFetchNewReleaseBooks: (condition_popular)=>dispatch(actions.fetchbooksbyquery(condition_popular)),
+        onFetchNewReleaseBooks: (condition_popular)=>dispatch(actions.fetchbooksHomepagenewrelease(condition_popular)),
     }
   }
   

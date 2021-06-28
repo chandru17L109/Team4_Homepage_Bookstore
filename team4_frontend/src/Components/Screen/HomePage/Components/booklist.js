@@ -14,8 +14,8 @@ import HomePageCarousal2Image2 from '../../../images/homePageCarousal2Image2.jpg
 import HomePageCarousal2Image3 from '../../../images/homePageCarousal2Image3.jpg'
 import BooklistCard2Image from '../../../images/booklistCard2Image.png'
 import * as actions from '../../../action/action'
-// import React, { useEffect } from 'react'
 import {connect} from 'react-redux';
+
 class AllBooksPage extends Component {
 
     constructor(props){
@@ -88,18 +88,13 @@ class AllBooksPage extends Component {
         return (
             <>
             <div className="Main">
-                {/* <div style={{
-                    width:"1100px",
-                    margin:"auto"
-                }}> */}
+         
                 <p className="visibility">{"Chandru & co"}</p>
                 <h3>Mixed Collections</h3>
-                    {/* <Container> */}
                         <div className="row">
                             {allbookslist} 
                         </div>
-                    {/* </Container> */}
-                {/* </div> */}
+            
 
                 <div className="homePageCarousal2">
                     <Carousel fade>

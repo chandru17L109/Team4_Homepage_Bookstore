@@ -1,20 +1,19 @@
 const express = require('express');
 const app = express();
 const cors = require('cors')
-// const bookRoutes = require('./controllers/search')
-const searchpageRoute = require('./routes/newsearch')
 
-const errorHandler = require('./middleware/errorhandler')
-const connectToDatabase = require('./db')
+const searchpageRoute = require('./routes/team4_routes/newsearch')
+
+
+const errorHandler = require('./middleware/team4_middleware/errorhandler')
+const connectToDatabase = require('./database/team4_database/db')
 
 app.use(cors())
 
-//parse the incoming http request to json
 app.use(express.json())
 
 connectToDatabase();
 
-// route for employees
 app.use('/books', searchpageRoute);
 app.use(errorHandler);
 

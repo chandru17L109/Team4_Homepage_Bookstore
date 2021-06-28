@@ -3,7 +3,10 @@
     box-sizing: border-box;
     background-color: white;
 }
-
+.headersearchimg{
+    margin: auto;
+    width: fit-content;
+}
 .search-option-catagory{
     background-color: white;
     margin: 10px 0px 0px 7px;  

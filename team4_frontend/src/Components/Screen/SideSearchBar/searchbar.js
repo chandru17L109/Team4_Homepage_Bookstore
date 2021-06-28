@@ -166,33 +166,33 @@ class Searchbar extends Component {
 
   const mapDispatchToProps = (dispatch) => {
     return {
-        onFetchChildrenAndTeen : (querycondition) => dispatch(actions.fetchbooksbyquery(querycondition)),
-        onFetchTravelandHoliday : (querycondition) => dispatch(actions.fetchbooksbyquery(querycondition)),
-        onFetchLifetyle : (querycondition)=> dispatch(actions.fetchbooksbyquery(querycondition)),  
-        onFetchMusic : (querycondition)=> dispatch(actions.fetchbooksbyquery(querycondition)),
+        onFetchChildrenAndTeen : (querycondition) => dispatch(actions.fetchbooksbyquery(1,querycondition)),
+        onFetchTravelandHoliday : (querycondition) => dispatch(actions.fetchbooksbyquery(1,querycondition)),
+        onFetchLifetyle : (querycondition)=> dispatch(actions.fetchbooksbyquery(1,querycondition)),  
+        onFetchMusic : (querycondition)=> dispatch(actions.fetchbooksbyquery(1,querycondition)),
       
-        onFetchPricebelow500 : (querycondition) => dispatch(actions.fetchbooksbyquery(querycondition)),
-        onFetchPrice500andabove : (querycondition) => dispatch(actions.fetchbooksbyquery(querycondition)),
-        onFetchPrice1000andabove : (querycondition)=> dispatch(actions.fetchbooksbyquery(querycondition)),
+        onFetchPricebelow500 : (querycondition) => dispatch(actions.fetchbooksbyquery(1,querycondition)),
+        onFetchPrice500andabove : (querycondition) => dispatch(actions.fetchbooksbyquery(1,querycondition)),
+        onFetchPrice1000andabove : (querycondition)=> dispatch(actions.fetchbooksbyquery(1,querycondition)),
         
-        onFetchDiscount50andabove : (querycondition)=> dispatch(actions.fetchbooksbyquery(querycondition)),
-        onFetchDiscount30andabove : (querycondition)=> dispatch(actions.fetchbooksbyquery(querycondition)),
-        onFetchDiscount10andabove : (querycondition)=> dispatch(actions.fetchbooksbyquery(querycondition)),
+        onFetchDiscount50andabove : (querycondition)=> dispatch(actions.fetchbooksbyquery(1,querycondition)),
+        onFetchDiscount30andabove : (querycondition)=> dispatch(actions.fetchbooksbyquery(1,querycondition)),
+        onFetchDiscount10andabove : (querycondition)=> dispatch(actions.fetchbooksbyquery(1,querycondition)),
         
-        onFetchRatings5 : (querycondition)=> dispatch(actions.fetchbooksbyquery(querycondition)),
-        onFetchRatings4 : (querycondition)=> dispatch(actions.fetchbooksbyquery(querycondition)),
-        onFetchRatings3 : (querycondition)=> dispatch(actions.fetchbooksbyquery(querycondition)),
-        onFetchRatings2 : (querycondition)=> dispatch(actions.fetchbooksbyquery(querycondition)),
-        onFetchRatings1 : (querycondition)=> dispatch(actions.fetchbooksbyquery(querycondition)),
+        onFetchRatings5 : (querycondition)=> dispatch(actions.fetchbooksbyquery(1,querycondition)),
+        onFetchRatings4 : (querycondition)=> dispatch(actions.fetchbooksbyquery(1,querycondition)),
+        onFetchRatings3 : (querycondition)=> dispatch(actions.fetchbooksbyquery(1,querycondition)),
+        onFetchRatings2 : (querycondition)=> dispatch(actions.fetchbooksbyquery(1,querycondition)),
+        onFetchRatings1 : (querycondition)=> dispatch(actions.fetchbooksbyquery(1,querycondition)),
 
-        onFetchSortpricelowtohigh : (querycondition)=> dispatch(actions.fetchbooksbyquery(querycondition)),
-        onFetchSortpricehightolow : (querycondition)=> dispatch(actions.fetchbooksbyquery(querycondition)),
+        onFetchSortpricelowtohigh : (querycondition)=> dispatch(actions.fetchbooksbyquery(1,querycondition)),
+        onFetchSortpricehightolow : (querycondition)=> dispatch(actions.fetchbooksbyquery(1,querycondition)),
 
-        onFetchSortdiscountlowtohigh : (querycondition)=> dispatch(actions.fetchbooksbyquery(querycondition)),
-        onFetchSortdiscounthightolow : (querycondition)=> dispatch(actions.fetchbooksbyquery(querycondition)),
+        onFetchSortdiscountlowtohigh : (querycondition)=> dispatch(actions.fetchbooksbyquery(1,querycondition)),
+        onFetchSortdiscounthightolow : (querycondition)=> dispatch(actions.fetchbooksbyquery(1,querycondition)),
 
-        onFetchSortratingslowtohigh : (querycondition)=> dispatch(actions.fetchbooksbyquery(querycondition)),
-        onFetchSortratingshightolow : (querycondition)=> dispatch(actions.fetchbooksbyquery(querycondition)),
+        onFetchSortratingslowtohigh : (querycondition)=> dispatch(actions.fetchbooksbyquery(1,querycondition)),
+        onFetchSortratingshightolow : (querycondition)=> dispatch(actions.fetchbooksbyquery(1,querycondition)),
 
     }
   }

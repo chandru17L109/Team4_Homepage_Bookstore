@@ -1,9 +1,9 @@
 var express = require('express')
 var router = express.Router()
-const query_find = require('../middleware/query_params.js');
-const {findAlldata,insertdata,findDataBasedOnTitle,findDataBasedOnAuthor,findDataBasedOnLanguage,findDataBasedOnSearchItem} = require('../controllers/newsearch.js')
+const query_find = require('../../middleware/team4_middleware/query_params');
+const {findAlldata,insertdata,findDataBasedOnTitle,findDataBasedOnAuthor,findDataBasedOnLanguage,findDataBasedOnSearchItem} = require('../../controllers/team4_controllers/newsearch')
 
-const Books = require('../models/search.js');
+const Books = require('../../models/team4_models/search');
 
 router.route('/')
 .get(query_find(Books),findAlldata)
