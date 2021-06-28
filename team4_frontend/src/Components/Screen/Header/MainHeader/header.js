@@ -3,6 +3,7 @@ import { Navbar, Nav, FormControl, Form, Button } from 'react-bootstrap';
 import '../../../Styles/header.css'
 import {Link} from "react-router-dom";
 
+import Headers from '../../../../Team1/components/Header'
 
 export default class Header extends Component {
     constructor(props){
@@ -36,8 +37,11 @@ export default class Header extends Component {
                     </Navbar.Collapse>
                     <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
                         <Nav className="justify-content-end inline headerButtons loginsignup">
-                            <Nav.Link href="#login"><Button variant="success" className="button1">Login</Button></Nav.Link>
-                            <Nav.Link href="#signup"><Button variant="info"  className="button2">Sign Up</Button></Nav.Link>
+
+                            {/* <Nav.Link href="#login"><Button variant="success" className="button1">Login</Button></Nav.Link> */}
+                            {/* <Nav.Link href="#signup"><Button variant="info"  className="button2">Sign Up</Button></Nav.Link> */}
+
+                            <Headers/>
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>

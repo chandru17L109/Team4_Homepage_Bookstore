@@ -9,9 +9,15 @@ import TodayDealsPage from './Components/Screen/TodayDealsPage/todaydealspage'
 import ProductDetailspage from './Components/Screen/DescriptionPage/description.js';
 import NewRelease from './Components/Screen/NewReleasesPage/newrelease.js';
 import Headersearch from './Components/Screen/Header/MainHeader/headersearch.js';
-import Login from "./Components/Screen/LoginPage/login";
+// import Login from "./Components/Screen/LoginPage/login";
+// ---------------------------------------------------------------------------------
+import { Container } from 'react-bootstrap';
+import LoginScreen from './Team1/screens/LoginScreen';
+import RegisterScreen from './Team1/screens/RegisterScreen';
+import ProfileScreen from './Team1/screens/ProfileScreen';
 
-
+import ForgotPasswordScreen from './Team1/screens/ForgotPasswordScreen';
+import NewPasswordScreen from './Team1/screens/NewPasswordScreen';
 
 function App() {
   return (
@@ -27,9 +33,15 @@ function App() {
                 <Route path="/description" component={ProductDetailspage}></Route>
                 <Route path="/newrelease" component={NewRelease}></Route>
                 <Route path="/headersearchresults/:searchelement" component={Headersearch}></Route>
-                <Route path="/login" component={Login}></Route>
+                {/* <Route path="/login" component={Login}></Route> */}
                 <Route path="/description" component={ProductDetailspage}></Route>
-                <Route path="/booklist" component={AllBooksPage}></Route> 
+
+                <Route path='/login' component={LoginScreen}></Route>
+                <Route path='/register' component={RegisterScreen}></Route>
+                <Route path='/profile' component={ProfileScreen} />
+                <Route path='/forgotPassword' component={ForgotPasswordScreen} exact />
+                <Route path='/resetPassword/:token' component={NewPasswordScreen} exact />  
+
               </Switch>        
         <Footer/>
       </Router>
@@ -39,3 +51,5 @@ function App() {
 }
 
 export default App;
+
+

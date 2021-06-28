@@ -7,8 +7,12 @@ import './Components/Styles/bootstrap.min.css';
 import {applyMiddleware, combineReducers, createStore} from 'redux';
 import {Provider} from 'react-redux'
 import BookReducer from './Components/store/reducer'
+// import store from './Team1/store'
 import thunkMiddleware from 'redux-thunk'
+import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
+
+import { userLoginReducer , userRegisterReducer ,userDetailsReducer,userUpdateProfileReducer,forgotPasswordReducer } from './Team1/reducers/userReducers'
 
 
 const loggerMiddleware = storeAPI => next => action => {
@@ -18,11 +22,40 @@ const loggerMiddleware = storeAPI => next => action => {
   return result
 }
 
-const composedEnhancer = composeWithDevTools(
-  applyMiddleware(loggerMiddleware, thunkMiddleware)
-)
+const middleware = [thunk]
 
-const appStore = createStore(combineReducers({BookReducer}) , composedEnhancer)
+// const store = createStore(
+//   reducer,
+//   initialState,
+//   composeWithDevTools(applyMiddleware(...middleware))
+// )
+
+// const composedEnhancer = composeWithDevTools(
+//   applyMiddleware(loggerMiddleware, thunkMiddleware)
+// )
+
+const reducer = combineReducers({
+  userLogin: userLoginReducer,
+  userRegister: userRegisterReducer,
+  userDetails:userDetailsReducer,
+  userUpdateProfile: userUpdateProfileReducer,
+  forgotPassword: forgotPasswordReducer,
+  BookReducer : BookReducer
+})
+
+
+const userInfoFromStorage = localStorage.getItem('userInfo')
+  ? JSON.parse(localStorage.getItem('userInfo'))
+  : null
+
+const initialState = {
+  userLogin: {
+    userInfo: userInfoFromStorage,
+  },
+  
+}
+
+const appStore = createStore(reducer, initialState , composeWithDevTools(applyMiddleware(...middleware)))
 
 ReactDOM.render(
   <React.StrictMode>
@@ -37,3 +70,5 @@ ReactDOM.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+
